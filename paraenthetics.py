@@ -1,5 +1,5 @@
 """Parenthetics module."""
-from dll import dll
+from link_list import link_list
 
 
 def parenthetics(string):
