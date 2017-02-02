@@ -25,3 +25,9 @@ class AutoComplete(object): # class
                     suggested_words.append(token)
                     break #break loop
             return suggested_words
+
+def get_word(start, token):
+    k = start.keys()[0]
+    token += k
+    start = start[k]
+    return start, token
