@@ -18,7 +18,7 @@ def calculate_distance(point1, point2):
         return degrees * math.pi / 180
 
     radius_earth = 6.371E3  # km
-    phi1 = convert_to_radians(point1[0])
+    phi1 = convert_to_radians(point1[0])#---------phi----------------
     phi2 = convert_to_radians(point2[0])
 
     delta_phi = convert_to_radians(point1[0] - point2[0])
@@ -28,12 +28,10 @@ def calculate_distance(point1, point2):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     return radius_earth * c / 1.60934  # convert km to miles
 
-
 def get_flight_json():
     """Return json of flight info."""
     flight_json = requests.get(FLIGHTS_URL).json()
     return flight_json
-
 
 def create_flight_graph(flight_json):
     """Return dictionary with city as key and values are connecting cities and lat lon."""
@@ -46,7 +44,6 @@ def create_flight_graph(flight_json):
         flight_dict[key] = value
         lat_lon_dict[key] = value2
     return flight_dict, lat_lon_dict
-
 
 def find_path(flight_dict, start_city, end_city, path=[]):
     """Return a flight path between two cities."""
@@ -65,14 +62,12 @@ def find_path(flight_dict, start_city, end_city, path=[]):
                 if city not in path:
                     stack.append(city)
 
-
 def get_lat_lon(city):
     """Return latitude and longitude given a city."""
     flight_json = get_flight_json()
     lat_lon_dict = create_flight_graph(flight_json)[1]
     lat_lon = lat_lon_dict[city]
     return lat_lon
-
 
 def get_path(start_city, end_city):
     """Returns path between two cities and the distance of the path."""
